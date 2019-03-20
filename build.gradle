@@ -3,7 +3,7 @@ apply plugin: 'java'
 jar {
     baseName = 'template'
     manifest {
-        attributes('Main-Class': 'src.main.Application')
+        attributes('Main-Class': 'main.Application')
     }
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
@@ -24,3 +24,7 @@ task copyJarToEBPack(type: Copy) {
     into "../ebpack/server"
 }
 
+sourceSets {
+    main.java.srcDirs = ['src']
+    test.java.srcDirs = ['test']
+}
